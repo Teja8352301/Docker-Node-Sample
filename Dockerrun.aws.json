@@ -1,0 +1,18 @@
+{
+    "AWSEBDockerrunVersion": "3",
+    "containerDefinitions":[
+        {
+            "name":"node-application",
+            "image":"teja8352/nodeapp:latest",
+            "hostname":"nodeapp",
+            "essential":"true",
+            "portMapping":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+            "memory":100
+        }
+    ]
+}
