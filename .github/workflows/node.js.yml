@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run test
-#     AGAIN ADDED
+    #     AGAIN ADDED
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
       
@@ -41,8 +41,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v3
       with:
-        push: true
-        tags: teja8352/nodeapp:latest
+          push: true
+          tags: teja8352/nodeapp:latest
     - name: Get Timestamp
       uses: gerred/actions/current-time@master
       id: current-time
@@ -62,10 +62,24 @@ jobs:
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v16
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_access_key: AKIA34ZOUV4UTMS6I2SE
+        aws_secret_key: 7YLc/Q6i7KsMm3/d6nqx8sepOJrn5ZPCs9trnYdj
         application_name: Node-Application-Sample
-        environment_name: Nodeapplicationsample-env
+        environment_name: Nodeapplicationsample-env-1
         version_label: "docker-app-${{ steps.format-time.outputs.replaced }}"
         region: ap-south-1
         deployment_package: deploy.zip
+      # DEPLOY TO AWS
+    # - name: Generate deployment package
+    #   run: zip -r deploy.zip . -x '*.git*'
+
+    # - name: Deploy to EB
+    #   uses: einaregilsson/beanstalk-deploy@v20
+    #   with:
+    #     aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     application_name: Docker-React
+    #     environment_name: Dockerreact-env
+    #     version_label: 12345
+    #     region: ap-south-1
+    #     deployment_package: deploy.zip
