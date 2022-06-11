@@ -62,10 +62,10 @@ jobs:
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v16
       with:
-        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_access_key: AKIA34ZOUV4UVKM3TN57
+        aws_secret_key: cU0EZYVQmIQi46h5UCeacP5ESIeF6UulM6w7e/aL
         application_name: Node-Application-Sample
-        environment_name: Nodeapplicationsample-env-1
+        environment_name: Nodeapplicationsample-env
         version_label: "docker-app-${{ steps.format-time.outputs.replaced }}"
         region: ap-south-1
         deployment_package: deploy.zip
